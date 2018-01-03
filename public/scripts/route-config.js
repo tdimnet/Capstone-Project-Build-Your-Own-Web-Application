@@ -8,7 +8,7 @@
   function config($routeProvider) {
     $routeProvider
       .when('/', {
-        controller : 'mainController',
+        controller : 'MainController',
         controllerAs : 'vm',
         templateUrl : 'templates/home.html'
       })
