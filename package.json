@@ -4,7 +4,7 @@
   "description": "the twelfth and final project of the treehouse techdegree in full stack javascript",
   "main": "src/index.js",
   "scripts": {
-    "start": "nodemon ./src/index.js localhost 3000",
+    "start": "./node_modules/.bin/nodemon ./src/index.js localhost 3000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
