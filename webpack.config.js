@@ -1,5 +1,5 @@
-const webpack = require('webpack');
-const path = require('path');
+const webpack   = require('webpack');
+const path      = require('path');
 
 module.exports = {
   context: __dirname + '/app',
@@ -21,6 +21,6 @@ module.exports = {
     filename: 'app.bundle.js'
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename=  */"vendor.bundle.js")
+    new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js")
   ]
 };
