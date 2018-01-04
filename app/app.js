@@ -13,3 +13,6 @@ angular.module('app', [
     }
   });
 });
+
+require('./controllers');
+require('./init');

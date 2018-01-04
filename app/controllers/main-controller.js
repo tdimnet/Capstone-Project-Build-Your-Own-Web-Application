@@ -1,7 +1,7 @@
 'use strict';
 
-function MainController() {
-
+function MainController($log) {
+  var _this = this;
 }
 
 module.exports = MainController;
