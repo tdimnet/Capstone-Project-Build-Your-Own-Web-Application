@@ -1,16 +1,16 @@
 'use strict';
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
+var express = require('express');
+var bodyParser = require('body-parser');
+var path = require('path');
 
-const app = express();
+var app = express();
 
-const user = require('./routes/user');
+var user = require('./routes/user');
 
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/capstone-project');
-const db = mongoose.connection
+var db = mongoose.connection
 
 // handling mongo error
 db.on('error', function(err) {
@@ -27,7 +27,7 @@ db.on('disconnected', function() {
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
-const port = process.env.PORT || 3000;
+var port = process.env.PORT || 3000;
 
 app.use('/', express.static('public'));
 app.use('/api/user', user);
@@ -35,14 +35,14 @@ app.use('/api/user', user);
 // vendor scripts
 app.get(
   '/vendor/angular.js',
-  (req, res) => {
+  function(req, res) {
     res.sendFile(path.join(__dirname, '../node_modules', 'angular', 'angular.js'));
   }
 );
 
 app.get(
   '/vendor/angular-route.js',
-  (req, res) => {
+  function(req, res) {
     res.sendFile(path.join(__dirname, '../node_modules', 'angular-route', 'angular-route.js'));
   }
 );
