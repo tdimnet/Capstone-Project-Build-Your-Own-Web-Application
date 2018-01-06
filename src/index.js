@@ -1,20 +1,50 @@
 'use strict';
 
-var express = require('express');
-var bodyParser = require('body-parser');
-var path = require('path');
+var express     = require('express');
+var morgan      = require('morgan');
+var bodyParser  = require('body-parser');
+var mongoose    = require('mongoose');
+var path        = require('path');
 
 var app = express();
 
-var user = require('./routes/user');
+var userRouter = require('./routes/user');
 
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/capstone-project');
-var db = mongoose.connection
 
-// handling mongo error
-db.on('error', function(err) {
-  console.error('connection error', err);
+
+//
+  // Application setup
+//
+// set our port
+app.set('port', process.env.PORT || 5000);
+
+// morgan gives us http request logging
+app.use(morgan('dev'));
+
+// parse the incomming request body
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// setup our static route to serve files from the "public" folder
+app.use('/', express.static('public'));
+
+// mongoose to use standard promises
+mongoose.Promise = global.Promise;
+
+
+
+//
+  // Database connection
+//
+mongoose
+    .connect('mongodb://localhost:27017/capstone-project')
+    .catch(function (err) {
+        console.log('MongoDB: connection error');
+    });
+var db = mongoose.connection;
+
+db.on('error', function (err) {
+    console.log('MongoDB: ' + err.message);
 });
 
 db.on('connected', function() {
@@ -25,27 +55,35 @@ db.on('disconnected', function() {
     console.log('MongoDB: disconnected');
 });
 
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json());
-var port = process.env.PORT || 5000;
 
-app.use('/', express.static('public'));
-app.use('/api/user', user);
 
-// vendor scripts
-app.get(
-  '/vendor/angular.js',
-  function(req, res) {
-    res.sendFile(path.join(__dirname, '../node_modules', 'angular', 'angular.js'));
-  }
-);
+//
+  // Routes
+//
+app.use('/user', userRouter);
 
-app.get(
-  '/vendor/angular-route.js',
-  function(req, res) {
-    res.sendFile(path.join(__dirname, '../node_modules', 'angular-route', 'angular-route.js'));
-  }
-);
 
-app.listen(port);
-console.log('Magic is happening on port ' + port);
+
+//
+  // Error handling
+//
+app.use(function (req, res, next) {
+    var err = new Error('Document not found');
+    err.status = 404;
+    return next(err);
+});
+
+// global error handler
+app.use(function (err, req, res, next) {
+    res.status(err.status || 500);
+    res.json({ error: err.message || 'Something went wrong' });
+});
+
+
+
+//
+  // Start the application server
+//
+var server = app.listen(app.get('port'), function () {
+    console.log('Express: server listening on port ' + server.address().port);
+});
