@@ -3,26 +3,21 @@
 var mongoose = require('mongoose');
 
 var UserSchema = new mongoose.Schema({
-  firstName: {
-    type        : String,
-    required    : [true, 'firstName cannot be blank'],
-    trim        : true
+  fullName: {
+    type: String,
+    required: [true, 'A name for the user is required.'],
+    trim: true
   },
-  lastName: {
-    type        : String,
-    required    : [true, 'lastName cannot be blank'],
-    trim        : true
+  emailAddress: {
+      type: String,
+      required: [true, 'An email address is required.'],
+      unique: true,
+      trim: true
   },
-  emailAdress: {
-    type        : String,
-    unique      : true,
-    required    : [true, 'emailAdress cannot be blank'],
-    trim        : true
-  },
-  password: {
-    type        : String,
-    required    : [true, 'password cannot be blank'],
-    trim        : true
+  hashedPassword: {
+      type: String,
+      required: [true, 'Passwords empty or do not match.'],
+      trim: true
   }
 });
 
