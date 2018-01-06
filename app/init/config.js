@@ -12,6 +12,11 @@ function config($httpProvider, $routeProvider) {
       controllerAs: 'vm',
       templateUrl: 'templates/sign-in.html'
     })
+    .when('/signup', {
+      controller: 'SignUpController',
+      controllerAs: 'vm',
+      templateUrl: 'templates/sign-up.html'
+    })
     .otherwise({
       redirectTo: '/'
     });
