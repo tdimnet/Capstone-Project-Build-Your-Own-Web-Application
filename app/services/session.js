@@ -1,6 +1,6 @@
 'use strict';
 
-function Session() {
+function SessionService() {
   var _this = this;
 
   _this.currentUser = {};
@@ -11,7 +11,7 @@ function Session() {
       _id: 0,
       fullName: '',
       emailAddress: '',
-      password: ''  
+      password: ''
     };
   };
 
@@ -22,4 +22,4 @@ function Session() {
   }
 }
 
-module.exports = Session;
+module.exports = SessionService;
