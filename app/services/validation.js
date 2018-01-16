@@ -26,6 +26,33 @@ function ValidationService($q) {
 
     validationErrors.errors[key].push(error);
   };
+
+  _this.hasValidationErrors = function(validationErrors) {
+    var hasValidationErrors = false;
+
+    for (var key in validationErrors.errors) {
+      if (validationErrors.errors.hasOwnProperty(key)) {
+        hasValidationErrors = true;
+        break;
+      }
+    }
+
+    return hasValidationErrors;
+  };
+
+  _this.getValidationErrorsObject = function() {
+    return {
+      message: 'Validation Failed',
+      errors: {}
+    };
+  };
+
+  _this.prepareErrorResponse = function(validationErrors) {
+    return $q.reject({
+      data: validationErrors,
+      status: 400
+    })
+  };
 }
 
 module.exports = ValidationService;
