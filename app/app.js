@@ -18,5 +18,4 @@ angular
 
 require('./controllers');
 require('./init');
-require('./providers');
 require('./services');

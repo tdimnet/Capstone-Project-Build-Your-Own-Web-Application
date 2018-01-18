@@ -9,7 +9,7 @@ function DataService($http) {
   this.createUser = function(user) {
     return $http.post('/api/user', user);
   };
-
+  
 }
 
 module.exports = DataService;
