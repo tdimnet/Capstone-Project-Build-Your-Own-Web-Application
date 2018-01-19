@@ -8,3 +8,4 @@ app.service('authService', require('./auth'));
 app.service('errorHandlerService', require('./error-handler'));
 app.service('sessionService', require('./session'));
 app.service('validationService', require('./validation'));
+app.service('toastService', require('./toast'));
