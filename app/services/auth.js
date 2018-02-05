@@ -42,7 +42,7 @@ function AuthService(sessionService, validationService, dataService, $q) {
         },
         function(response) {
           sessionService.resetSession();
-          validationService.addVlidationError(
+          validationService.addValidationError(
             validationErrors,
             'password',
             validationService.validationCodes.loginFailure,

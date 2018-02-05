@@ -3,7 +3,7 @@
 function ValidationService($q) {
   var _this = this;
 
-  _this.validationService = {
+  _this.validationCodes = {
     required: 'required',
     loginFailure: 'login_failure',
     passwordMismatch: 'password_mismatch',
@@ -11,7 +11,8 @@ function ValidationService($q) {
   };
 
   _this.addRequiredValidationError = function(validationErrors, key, message) {
-    _this.addVlidationError(validationErrors, key, _this.validationCodes.required, message);
+    _this.addValidationError(validationErrors, key,
+      _this.validationCodes.required, message);
   };
 
   _this.addValidationError = function(validationErrors, key, code, message) {
@@ -48,10 +49,7 @@ function ValidationService($q) {
   };
 
   _this.prepareErrorResponse = function(validationErrors) {
-    return $q.reject({
-      data: validationErrors,
-      status: 400
-    })
+    return $q.reject({ data: validationErrors, status: 400 });
   };
 }
 
