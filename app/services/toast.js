@@ -21,7 +21,23 @@ toastr.options = {
 }
 
 function ToastService() {
+  var _this = this;
 
+  _this.success = function(message, title) {
+    toastr.success(message, title);
+  };
+
+  _this.info = function(message, title) {
+    toastr.info(message, title);
+  };
+
+  _this.warning = function(message, title) {
+    toastr.warning(message, title);
+  };
+
+  _this.error = function(message, title) {
+    toastr.error(message, title);
+  };
 }
 
 module.exports = ToastService;
