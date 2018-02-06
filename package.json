@@ -7,6 +7,7 @@
     "start": "nodemon ./src/index.js localhost 5000",
     "build": "node_modules/.bin/webpack",
     "clean": "rm ./public/scripts/*",
+    "full": "npm run clean && npm run build && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

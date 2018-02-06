@@ -17,35 +17,34 @@ router.get('/:userId', function(req, res) {
 // POST /api/user
   // status: 201
   // Return the desired user
-router.post('/', function(req, res, next) {
-  let password = '';
-  if (
-    req.body &&
-    req.body.password &&
-    req.body.confirmPassword &&
-    req.body.password === req.body.confirmPassword
-  ) {
-    password = req.body.password;
-  }
+  router.post('/', function(req, res, next) {
+    console.log(req.body);
+    if(req.body.fullName && req.body.emailAddress && req.body.password) {
+      const newUser = {
+        fullName: req.body.fullName,
+        emailAddress: req.body.emailAddress,
+        password: req.body.password
+      }
 
-  let user = new User({
-    fullName: req.body.fullName,
-    emailAddress: req.body.emailAddress,
-    hashedPassword: password
-  });
+      User.create(newUser, function(error, user) {
+        if(error) {
+          return next(error);
+        } else {
+          return res
+                  .status(201)
+                  .location('/')
+                  .send();
+        }
+      });
 
-  user.save(function(err) {
-    if (err && err.name === 'ValidationError') {
-      res.status(400);
-      res.json(validationErrors(400, err.errors));
     } else {
       res
-        .status(201)
-        .location('/')
-        .send();
+        .status(403)
+        .json({
+          error: 'All fields are required'
+        });
     }
-  })
-});
+  });
 
 
 function validationErrors(code, errors) {
