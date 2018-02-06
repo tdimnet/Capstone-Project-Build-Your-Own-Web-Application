@@ -17,11 +17,57 @@ router.get('/:userId', function(req, res) {
 // POST /api/user
   // status: 201
   // Return the desired user
-router.post('/:userId', function(req, res) {
-  res.json({
-    response: 'You sent me a post request'
+router.post('/', function(req, res, next) {
+  let password = '';
+  if (
+    req.body &&
+    req.body.password &&
+    req.body.confirmPassword &&
+    req.body.password === req.body.confirmPassword
+  ) {
+    password = req.body.password;
+  }
+
+  let user = new User({
+    fullName: req.body.fullName,
+    emailAddress: req.body.emailAddress,
+    hashedPassword: password
   });
+
+  user.save(function(err) {
+    if (err && err.name === 'ValidationError') {
+      res.status(400);
+      res.json(validationErrors(400, err.errors));
+    } else {
+      res
+        .status(201)
+        .location('/')
+        .send();
+    }
+  })
 });
+
+
+function validationErrors(code, errors) {
+
+    let errMessages = [];
+
+    for (let err in errors) {
+        if (errors[err] && errors[err].message) {
+            errMessages.push({
+                code: code,
+                message: errors[err].message
+            });
+        }
+    }
+
+    return {
+        message: 'Validation Failed',
+        errors: {
+            property: errMessages
+        }
+    };
+}
 
 
 module.exports = router;
