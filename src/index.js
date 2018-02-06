@@ -1,15 +1,21 @@
 'use strict';
 
 var express     = require('express');
-var morgan      = require('morgan');
-var bodyParser  = require('body-parser');
+
+var user = require('./routes/user');
+
+
+var jsonParser = require('body-parser').json;
+var logger      = require('morgan');
+
 var mongoose    = require('mongoose');
-var path        = require('path');
 
 var app = express();
 
-var userRouter = require('./routes/user');
+app.use(logger('dev'));
+app.use(jsonParser());
 
+app.use('/api/user', user);
 
 
 //
@@ -18,12 +24,6 @@ var userRouter = require('./routes/user');
 // set our port
 app.set('port', process.env.PORT || 5000);
 
-// morgan gives us http request logging
-app.use(morgan('dev'));
-
-// parse the incomming request body
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 
 // setup our static route to serve files from the "public" folder
 app.use('/', express.static('public'));
@@ -54,14 +54,6 @@ db.on('connected', function() {
 db.on('disconnected', function() {
     console.log('MongoDB: disconnected');
 });
-
-
-
-//
-  // Routes
-//
-app.use('/user', userRouter);
-
 
 
 //
