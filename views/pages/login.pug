@@ -1,0 +1,10 @@
+extends ../core/layout
+
+block content
+    h1 Log In
+    form(method='POST', action='/login')
+        label(for='email') Email
+            input(type='email', id='email', placeholder='Your email', name='email')
+        label(for='password') Email
+            input(type='password', id='password', placeholder='Your password', name='password')
+        button(type='submit') Log In
