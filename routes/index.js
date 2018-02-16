@@ -44,7 +44,6 @@ router.post('/register', function(req, res, next) {
       }
     });
 
-    console.log(userData)
     return res.render('pages/register');
   } else {
     var err = new Error('All fields are required.');
