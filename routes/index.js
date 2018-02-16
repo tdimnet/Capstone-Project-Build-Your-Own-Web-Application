@@ -10,8 +10,16 @@ router.get('/profile', function(req, res) {
 });
 
 // GET /logout
-router.get('/logout', function(req, res) {
-  return res.render('pages/index');
+router.get('/logout', function(req, res, next) {
+  if (req.session) {
+    req.session.destroy(function(err) {
+      if (err) {
+        return next(err);
+      } else {
+        return res.redirect('/');
+      }
+    });
+  }
 });
 
 // GET /login
