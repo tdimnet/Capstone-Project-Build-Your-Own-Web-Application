@@ -20,6 +20,15 @@ router.get('/login', function(req, res) {
 });
 
 // Post /login
+router.post('/register', function(req, res, next) {
+  if (req.body.email && req.body.name && req.body.password) {
+    return res.redirect('/');
+  } else {
+    var err = new Error('All fields are required');
+    err.status = 400;
+    return next(err);
+  }
+});
 
 // GET /register
 router.get('/register', function(req, res) {
