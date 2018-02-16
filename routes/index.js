@@ -17,8 +17,18 @@ var mid = require('../middleware');
 // POST /register
 
 // GET /
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
   return res.render('pages/index')
+});
+
+// GET /about
+router.get('/about', function(req, res) {
+  return res.render('pages/about')
+});
+
+// GET /contact
+router.get('/contact', function(req, res) {
+  return res.render('pages/contact');
 });
 
 module.exports = router;
