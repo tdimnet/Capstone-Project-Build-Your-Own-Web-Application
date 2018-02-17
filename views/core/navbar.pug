@@ -5,14 +5,18 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
             li.nav-item.active
                 a.nav-link(href="/") Home
             li.nav-item
-                a.nav-link(href="/profile") My Profile
-            li.nav-item
                 a.nav-link(href="/about") About
             li.nav-item
                 a.nav-link(href="/contact") Contact
-            li.nav-item.active
-                a.nav-link(href="/register") Sign Up
-            li.nav-item
-                a.nav-link(href="/login") Login
-            li.nav-item
-                a.nav-link(href="/logout") Log out
+            if !currentUser
+                li.nav-item
+                    a.nav-link(href="/login") Login
+                li.nav-item.active
+                    a.nav-link(href="/register") Sign Up
+
+            else
+                li.nav-item
+                    a.nav-link(href="/profile") My Profile
+                li.nav-item
+                    a.nav-link(href="/logout") Log out
+

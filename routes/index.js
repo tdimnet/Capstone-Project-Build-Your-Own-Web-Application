@@ -6,20 +6,25 @@ var mid = require('../middleware');
 
 // GET /profile
 router.get('/profile', function(req, res, next) {
-  User
-    .findById(req.session.userId)
-    .exec(function(error, user) {
-      if (error) {
-        return next(error);
-      } else {
-        return res.render(
-          'pages/profile',
-          {
-            name: user.name
-          }
-        );
-      }
-    })
+  if (!req.session.userId) {
+    return res.redirect('/');
+  } else {
+    User
+      .findById(req.session.userId)
+      .exec(function(error, user) {
+        if (error) {
+          return next(error);
+        } else {
+          return res.render(
+            'pages/profile',
+            {
+              title: 'Profile',
+              name: user.name
+            }
+          );
+        }
+      })
+  }
 });
 
 // GET /logout
@@ -37,7 +42,12 @@ router.get('/logout', function(req, res, next) {
 
 // GET /login
 router.get('/login', function(req, res) {
-  return res.render('pages/login');
+  return res.render(
+    'pages/login',
+    {
+      title: 'Log In'
+    }
+  );
 });
 
 // Post /login
@@ -62,7 +72,12 @@ router.post('/login', function(req, res, next) {
 
 // GET /register
 router.get('/register', function(req, res) {
-  return res.render('pages/register');
+  return res.render(
+    'pages/register',
+    {
+      title: 'Sign Up'
+    }
+  );
 });
 
 // POST /register
@@ -93,17 +108,32 @@ router.post('/register', function(req, res, next) {
 
 // GET /
 router.get('/', function(req, res) {
-  return res.render('pages/index')
+  return res.render(
+    'pages/index',
+    {
+      title: 'Home'
+    }
+  );
 });
 
 // GET /about
 router.get('/about', function(req, res) {
-  return res.render('pages/about')
+  return res.render(
+    'pages/about',
+    {
+      title: 'About'
+    }
+  );
 });
 
 // GET /contact
 router.get('/contact', function(req, res) {
-  return res.render('pages/contact');
+  return res.render(
+    'pages/contact',
+    {
+      title: 'Contact'
+    }
+  );
 });
 
 module.exports = router;
