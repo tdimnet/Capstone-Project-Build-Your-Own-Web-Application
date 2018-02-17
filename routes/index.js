@@ -5,8 +5,21 @@ var Restaurant = require('../models/restaurant');
 var mid = require('../middleware');
 
 // GET /profile
-router.get('/profile', function(req, res) {
-  return res.render('pages/profile');
+router.get('/profile', function(req, res, next) {
+  User
+    .findById(req.session.userId)
+    .exec(function(error, user) {
+      if (error) {
+        return next(error);
+      } else {
+        return res.render(
+          'pages/profile',
+          {
+            name: user.name
+          }
+        );
+      }
+    })
 });
 
 // GET /logout
