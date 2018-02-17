@@ -1,0 +1,26 @@
+extends ../../core/layout
+
+block content
+    h1 Weclome #{name} to your profile
+    h2 Restaurants saved
+
+    nav
+        ul
+            li
+                a.nav-link(href="profile/new-restaurant") Add new restaurant
+            li
+                a.nav-link(href="/all") See the restaurants saved
+
+    section
+        h3 5 latest restaurants
+            ul
+                li
+                    a.nav-link(href="/") Restaurant 1
+                li
+                    a.nav-link(href="/") Restaurant 2
+                li
+                    a.nav-link(href="/") Restaurant 3
+                li
+                    a.nav-link(href="/") Restaurant 4
+                li
+                    a.nav-link(href="/") Restaurant 5

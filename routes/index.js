@@ -16,7 +16,7 @@ router.get('/profile', function(req, res, next) {
           return next(error);
         } else {
           return res.render(
-            'pages/profile',
+            'pages/profile/profile',
             {
               title: 'Profile',
               name: user.name
@@ -24,6 +24,20 @@ router.get('/profile', function(req, res, next) {
           );
         }
       })
+  }
+});
+
+// GET /profile/new
+router.get('/profile/new-restaurant', function(req, res, next) {
+  if (!req.session.userId) {
+    return res.redirect('/');
+  } else {
+    return res.render(
+      'pages/profile/new-restaurant',
+      {
+        title: 'New Restaurant'
+      }
+    );
   }
 });
 
