@@ -7,10 +7,10 @@ function verifyFields(searchInputText, locationInputText) {
 }
 
 function getRestaurantInfo(searchInputText, locationInputText) {
-  const proxyurl = "https://cors-anywhere.herokuapp.com/";
-  const url = `https://api.yelp.com/v3/businesses/search?term=${searchInputText}&location=-${locationInputText}`;
+  var proxyurl = "https://cors-anywhere.herokuapp.com/";
+  var url = `https://api.yelp.com/v3/businesses/search?term=${searchInputText}&location=-${locationInputText}`;
 
-  const headers = new Headers();
+  var headers = new Headers();
   headers.append('Authorization', 'Bearer SwVspw3I5otouzM3D6E7pBlhLkQK6lxI01wtE7WUjlu4dcSdXSAXdxAXwIpfPOy1gte76m_94kyWBwjCIYHC4GfKX-iSmmYYkfUKbKndh8_WFm82jT1a7SualN-HWnYx');
 
 
@@ -24,6 +24,25 @@ function getRestaurantInfo(searchInputText, locationInputText) {
 
 function displayBusinesses(businesses) {
   console.log(businesses);
+  var businessesList = '<ul class="businesses-list">';
+  for (var i = 0; i < businesses.length; i++) {
+    businessesList += `
+      <div>
+        <li class="business-name">${businesses[i].name}</li>
+        <li class="business-phone">${businesses[i].display_phone}</li>
+        <li class="business-price">${businesses[i].price}</li>
+        <li class="business-rating">${businesses[i].rating}</li>
+        <li class="business-is_closed">
+            ${businesses[i].is_closed ? 'close' : 'open'}
+        </li>
+        <li class="business-address">${businesses[i].location.address1}</li>
+        <li class="business-city">${businesses[i].location.city}</li>
+        <hr>
+      </div>
+    `;
+  }
+  businessesList += '</ul>';
+  searchForm.insertAdjacentHTML('afterend', businessesList);
 }
 
 
