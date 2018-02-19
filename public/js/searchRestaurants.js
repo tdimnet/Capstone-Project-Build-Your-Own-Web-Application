@@ -6,7 +6,7 @@ function verifyFields(searchInputText, locationInputText) {
   return searchInputText.length !== 0 && locationInputText.length !== 0;
 }
 
-function getRestaurantInfo(searchInputText, locationInputText) {
+function getRestaurantInfos(searchInputText, locationInputText) {
   var proxyurl = "https://cors-anywhere.herokuapp.com/";
   var url = `https://api.yelp.com/v3/businesses/search?term=${searchInputText}&location=-${locationInputText}`;
 
@@ -19,7 +19,7 @@ function getRestaurantInfo(searchInputText, locationInputText) {
     { method: 'GET', headers: headers })
       .then(response => response.json())
       .then(data => displayBusinesses(data.businesses))
-      .catch(error => console.log(error))
+      .catch(error => alert(error))
 }
 
 function displayBusinesses(businesses) {
@@ -51,6 +51,6 @@ function displayBusinesses(businesses) {
 searchForm.addEventListener('submit', function(event) {
   event.preventDefault();
   if (verifyFields(searchInput.value, locationInput.value)) {
-    getRestaurantInfo(searchInput.value, locationInput.value);
+    getRestaurantInfos(searchInput.value, locationInput.value);
   }
 });
