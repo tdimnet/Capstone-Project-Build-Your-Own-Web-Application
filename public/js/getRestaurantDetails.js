@@ -16,16 +16,16 @@ function getRestaurantDetails(restaurantId) {
   )
     .then(response => response.json())
     .then(data => {
-      getCategoriesHashtags(data.categories)
+      getCategoriesGifs(data.categories)
       displayRestaurantInfo(data)
   }).catch(error => alert(error))
 }
 
-function getCategoriesHashtags(data) {
+function getCategoriesGifs(data) {
   var alias = data[0].alias;
   var proxyUrl = "https://cors-anywhere.herokuapp.com/";
   var url = `https://api.giphy.com/v1/gifs/search?api_key=Z5WMwvBFVx8W0k3ZsaURnmM9EYFkslC3&q=${alias}&limit=5`;
-  fetch(proxyUrl + url).then(response => response.json()).then(data => displayCategoriesHashtags(data.data))
+  fetch(proxyUrl + url).then(response => response.json()).then(data => displayCategoriesGifs(data.data))
 }
 
 function displayRestaurantInfo(restaurantData) {
@@ -38,10 +38,10 @@ function displayRestaurantInfo(restaurantData) {
 }
 
 
-function displayCategoriesHashtags(categoriesHashtags) {
+function displayCategoriesGifs(categoriesGifs) {
   var categories = '<ul>';
-  for (var i = 0; i < categoriesHashtags.length; i++) {
-    categories += `<li><iframe src="${categoriesHashtags[i].embed_url}" width="400" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></li>`;
+  for (var i = 0; i < categoriesGifs.length; i++) {
+    categories += `<li><iframe src="${categoriesGifs[i].embed_url}" width="400" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></li>`;
   }
   categories += '</ul>';
   restaurantDetails.insertAdjacentHTML('afterend', categories);
