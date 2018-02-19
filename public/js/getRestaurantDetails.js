@@ -21,8 +21,8 @@ function getRestaurantDetails(restaurantId) {
   }).catch(error => alert(error))
 }
 
-function getCategoriesGifs(data) {
-  var alias = data[0].alias;
+function getCategoriesGifs(categories) {
+  var alias = categories[0].alias;
   var proxyUrl = "https://cors-anywhere.herokuapp.com/";
   var url = `https://api.giphy.com/v1/gifs/search?api_key=Z5WMwvBFVx8W0k3ZsaURnmM9EYFkslC3&q=${alias}&limit=5`;
   fetch(proxyUrl + url).then(response => response.json()).then(data => displayCategoriesGifs(data.data))
