@@ -28,7 +28,7 @@ router.get('/profile', function(req, res, next) {
 });
 
 // GET /profile/new
-router.get('/profile/new-restaurant', function(req, res, next) {
+router.get('/profile/new-restaurant', function(req, res) {
   if (!req.session.userId) {
     return res.redirect('/');
   } else {
@@ -36,6 +36,20 @@ router.get('/profile/new-restaurant', function(req, res, next) {
       'pages/profile/new-restaurant',
       {
         title: 'New Restaurant'
+      }
+    );
+  }
+});
+
+// GET /profile/restaurant
+router.get('/profile/restaurant/:id', function(req, res) {
+  if (!req.session.userId) {
+    return res.redirect('/');
+  } else {
+    return res.render(
+      'pages/profile/restaurant',
+      {
+        title: 'Restaurant Detail'
       }
     );
   }

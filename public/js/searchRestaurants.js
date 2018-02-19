@@ -29,14 +29,16 @@ function displayBusinesses(businesses) {
     businessesList += `
       <div>
         <li class="business-name">${businesses[i].name}</li>
-        <li class="business-phone">${businesses[i].display_phone}</li>
         <li class="business-price">${businesses[i].price}</li>
         <li class="business-rating">${businesses[i].rating}</li>
         <li class="business-is_closed">
             ${businesses[i].is_closed ? 'close' : 'open'}
         </li>
-        <li class="business-address">${businesses[i].location.address1}</li>
-        <li class="business-city">${businesses[i].location.city}</li>
+        <li class="business-link">
+            <a href="/profile/restaurant/${businesses[i].id}">
+                See more info about the restaurant
+            </a>
+          </li>
         <hr>
       </div>
     `;
