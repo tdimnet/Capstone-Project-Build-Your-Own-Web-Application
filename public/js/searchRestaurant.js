@@ -7,11 +7,23 @@ function verifyFields(searchInputText, locationInputText) {
 }
 
 function getRestaurantInfo(searchInputText, locationInputText) {
-  return fetch(`https://api.yelp.com/v3/businesses/search?term=${searchInputText}&longitude=-${locationInputText}`, {
+  const proxyurl = "https://cors-anywhere.herokuapp.com/";
+  const url = `https://api.yelp.com/v3/businesses/search?term=${searchInputText}&location=-${locationInputText}`;
+
+  const headers = new Headers();
+  headers.append('Content-Type', 'application/json');
+  headers.append('Accept', 'application/json');
+
+  headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+  headers.append('Access-Control-Allow-Credentials', 'true');
+
+  headers.append('GET', 'POST', 'OPTIONS');
+  headers.append('Authorization', 'Bearer SwVspw3I5otouzM3D6E7pBlhLkQK6lxI01wtE7WUjlu4dcSdXSAXdxAXwIpfPOy1gte76m_94kyWBwjCIYHC4GfKX-iSmmYYkfUKbKndh8_WFm82jT1a7SualN-HWnYx');
+
+
+  return fetch(proxyurl + url, {
     method: 'GET',
-    headers: {
-      Authorization: 'Bearer SwVspw3I5otouzM3D6E7pBlhLkQK6lxI01wtE7WUjlu4dcSdXSAXdxAXwIpfPOy1gte76m_94kyWBwjCIYHC4GfKX-iSmmYYkfUKbKndh8_WFm82jT1a7SualN-HWnYx'
-    }
+    headers: headers
   }).then(response => console.log(response)).catch(error => console.log(error))
 }
 
