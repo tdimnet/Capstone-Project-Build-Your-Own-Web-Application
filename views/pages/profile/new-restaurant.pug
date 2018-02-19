@@ -3,3 +3,13 @@ extends ../../core/layout
 block content
     h1 New Restaurant
     h2 Start by searching for a new restaurant
+
+    hr
+
+    form(id='search-form')
+        input(type='text', placeholder='Search Term', id='search-input')
+        input(type='text', placeholder='Your Location', id='location-input')
+        input(type='submit')
+
+
+    script(src='/js/searchRestaurant.js')
