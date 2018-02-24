@@ -18,6 +18,7 @@ function getRestaurantDetails(restaurantId) {
     .then(data => {
       getCategoriesGifs(data.categories)
       displayRestaurantInfo(data)
+      initMap(data.coordinates.latitude, data.coordinates.longitude)
   }).catch(error => alert(error))
 }
 
@@ -29,10 +30,16 @@ function getCategoriesGifs(categories) {
 }
 
 function displayRestaurantInfo(restaurantData) {
+  console.log(restaurantData)
   var restaurantInfo = `
     <ul>
         <li>${restaurantData.name}</li>
     </ul>
+    <hr>
+    <form action="">
+        <input type='hidden' value=${restaurantData.id}>
+        <input type='submit' value='save restaurant'>
+    </form>
   `;
   restaurantDetails.innerHTML = restaurantInfo;
 }
@@ -50,4 +57,16 @@ function displayCategoriesGifs(categoriesGifs) {
 window.onload = function() {
   var restaurantId = window.location.href.slice(41);
   getRestaurantDetails(restaurantId);
+}
+
+function initMap(lat, lng) {
+  var uluru = {lat: lat, lng: lng};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 14,
+    center: uluru
+  });
+  var marker = new google.maps.Marker({
+    position: uluru,
+    map: map
+  });
 }
