@@ -1,0 +1,19 @@
+extends ../../core/layout
+
+block content
+    h1 All restaurants view
+    hr
+
+    if restaurants.length > 0
+        each restaurant in restaurants
+            .restaurant-item
+                ul
+                    li= restaurant.nickName
+                    li= restaurant.restaurantType
+                    li= restaurant.city
+                    li
+                        a(href='/profile/restaurant/' + restaurant.restaurantName) See Restaurant Details
+
+    else
+        .no-content
+            p No restaurant saved.

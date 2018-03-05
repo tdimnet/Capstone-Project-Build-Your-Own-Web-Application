@@ -55,6 +55,7 @@ router.get('/profile/restaurant/:id', function(req, res) {
   }
 });
 
+// POST /profile/restaurant
 router.post('/profile/restaurant/:id', function(req, res, next) {
   if (req.body.nickName && req.body.restaurantName && req.body.restaurantType && req.body.city) {
     var restaurantData = {
@@ -78,6 +79,24 @@ router.post('/profile/restaurant/:id', function(req, res, next) {
   }
 });
 
+// GET /profile/all-restaurants
+router.get('/profile/all-restaurants', function(req, res) {
+  if (!req.session.userId) {
+    return res.redirect('/');
+  } else {
+    Restaurant
+      .find()
+      .then(function(restaurants) {
+        return res.render(
+          'pages/profile/all-restaurants',
+          {
+            title: 'All Restaurants',
+            restaurants: restaurants
+          }
+        );
+      })
+  }
+});
 
 // GET /logout
 router.get('/logout', function(req, res, next) {
