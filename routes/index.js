@@ -207,24 +207,4 @@ router.get('/', function(req, res) {
   );
 });
 
-// GET /about
-router.get('/about', function(req, res) {
-  return res.render(
-    'pages/about',
-    {
-      title: 'About'
-    }
-  );
-});
-
-// GET /contact
-router.get('/contact', function(req, res) {
-  return res.render(
-    'pages/contact',
-    {
-      title: 'Contact'
-    }
-  );
-});
-
 module.exports = router;

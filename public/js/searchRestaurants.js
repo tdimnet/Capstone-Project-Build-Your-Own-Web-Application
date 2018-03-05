@@ -23,27 +23,47 @@ function getRestaurantInfos(searchInputText, locationInputText) {
 }
 
 function displayBusinesses(businesses) {
-  console.log(businesses);
-  var businessesList = '<ul class="businesses-list">';
+  var businessesList = `
+    <div class="container table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Restaurant Name</th>
+                  <th>Price</th>
+                  <th>Rating</th>
+                  <th>Status</th>
+                  <th>See Restaurant Details</th>
+                </tr>
+            </thead>
+            <tbody>
+  `;
   for (var i = 0; i < businesses.length; i++) {
     businessesList += `
-      <div>
-        <li class="business-name">${businesses[i].name}</li>
-        <li class="business-price">${businesses[i].price}</li>
-        <li class="business-rating">${businesses[i].rating}</li>
-        <li class="business-is_closed">
+      <tr>
+        <td>${i + 1}</td>
+        <td>${businesses[i].name}</td>
+        <td>${businesses[i].price}</td>
+        <td>${businesses[i].rating}</td>
+        <td>
             ${businesses[i].is_closed ? 'close' : 'open'}
-        </li>
-        <li class="business-link">
-            <a href="/profile/restaurant/${businesses[i].id}">
+        </td>
+        <td>
+            <a 
+                class="btn btn-outline-primary" 
+                href="/profile/restaurant/${businesses[i].id}"
+            >
                 See more info about the restaurant
             </a>
-          </li>
-        <hr>
-      </div>
+          </td>
+      </tr>
     `;
   }
-  businessesList += '</ul>';
+  businessesList += `
+        </tbody>
+    </table>
+  </div>
+  `;
   searchForm.insertAdjacentHTML('afterend', businessesList);
 }
 

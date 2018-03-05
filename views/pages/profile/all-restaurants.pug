@@ -5,11 +5,8 @@ block content
         .container.text-sm-center.pt-5
             h1.display-4 All restaurants view
             p.lead Below is all your restaurants saved
+            a.btn.btn-outline-light(href='/profile') Return to home
 
-
-    .container
-        h5
-            a.btn.btn-outline-secondary(href='/profile') Return to home
     if restaurants.length > 0
         .container.table-responsive
             table.table.table-striped.table-hover

@@ -1,16 +1,16 @@
 extends ../../core/layout
 
 block content
-    h1 Restaurant Details
-    h2 Below is the restaurant details
+    .jumbotron.jumbotron-fluid.bg-info.text-white
+        .container.text-sm-center.pt-5
+            h1.display-4 Restaurant Details
+            p.lead Below is the restaurant details
 
-    hr
     div(id='restaurant-details')
 
-    hr
-        h3 My Google Maps Demo
+    .container
+        h4 My Google Maps Demo
         div(id="map")
-
 
     script(src='/js/getRestaurantDetails.js')
     script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3LZlkBJEN0reTK6DyANwdjU9hhi3P8KQ")
