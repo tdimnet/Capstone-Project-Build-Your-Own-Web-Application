@@ -1,10 +1,13 @@
 extends ../core/layout
 
 block content
-    h1 Log In
-    form(method='POST', action='/login')
-        label(for='email') Email
-            input(type='email', id='email', placeholder='Your email', name='email')
-        label(for='password') Email
-            input(type='password', id='password', placeholder='Your password', name='password')
-        button(type='submit') Log In
+    .container
+        h1.text-secondary.text-center.my-5.font-weight-light.display-4 Please Log In
+        form.col-md-8.offset-md-2(method='POST', action='/login')
+            .form-group
+                label(for='email') Email
+                input.form-control(type='email', id='email', placeholder='Your email', name='email')
+            .form-group
+                label(for='password') Email
+                input.form-control(type='password', id='password', placeholder='Your password', name='password')
+            button.btn.btn-primary.btn-lg.btn-block(type='submit') Log In
