@@ -79,6 +79,20 @@ router.post('/profile/restaurant/:id', function(req, res, next) {
   }
 });
 
+// GET /profile/restaurant-saved
+router.get('/profile/restaurant-saved/:id', function(req, res) {
+  if (!req.session.userId) {
+    return res.redirect('/');
+  } else {
+    return res.render(
+      'pages/profile/restaurant-saved',
+      {
+        title: 'Saved restaurant detail'
+      }
+    );
+  }
+});
+
 // GET /profile/all-restaurants
 router.get('/profile/all-restaurants', function(req, res) {
   if (!req.session.userId) {
