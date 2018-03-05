@@ -16,14 +16,6 @@ var RestaurantSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  address: {
-    type: String,
-    trim: true
-  },
-  postCode: {
-    type: Number,
-    trim: true
-  },
   city: {
     type: String,
     trim: true

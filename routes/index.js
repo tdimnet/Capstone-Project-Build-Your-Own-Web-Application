@@ -55,6 +55,34 @@ router.get('/profile/restaurant/:id', function(req, res) {
   }
 });
 
+router.post('/profile/restaurant/:id', function(req, res, next) {
+  console.log(req.body)
+
+  // if (req.body.email && req.body.name && req.body.password) {
+  //   var userData = {
+  //     email: req.body.email,
+  //     name: req.body.name,
+  //     password: req.body.password
+  //   };
+  //
+  //   User.create(userData, function(error, user) {
+  //     if (error) {
+  //       return next(error);
+  //     } else {
+  //       req.session.userId = user._id;
+  //       return res.redirect('/profile');
+  //     }
+  //   });
+  //
+  //   return res.render('pages/register');
+  // } else {
+  //   var err = new Error('All fields are required.');
+  //   err.status = 400;
+  //   return next(err);
+  // }
+});
+
+
 // GET /logout
 router.get('/logout', function(req, res, next) {
   if (req.session) {

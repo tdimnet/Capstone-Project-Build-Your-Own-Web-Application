@@ -36,10 +36,31 @@ function displayRestaurantInfo(restaurantData) {
         <li>${restaurantData.name}</li>
     </ul>
     <hr>
-    <form action="" method="post">
-        <input type="text" placeholder="Restaurant nickname" />
-        <input type='hidden' value=${restaurantData.id} />
-        <input type='submit' value='save restaurant' />
+    <form method="post">
+        <input
+            type="text"
+            placeholder="Restaurant nickname"
+            name='nickName'
+        />
+        <input
+            type='hidden'
+            value=${restaurantData.id}
+            name='restaurantName'
+        />
+        <input
+            type='hidden'
+            value=${restaurantData.categories[0].alias}
+            name='restaurantType'
+        />
+        <input
+            type='hidden'
+            value=${restaurantData.location.city}
+            name='city'
+        />
+        <input
+            type='submit'
+            value='save restaurant'
+        />
     </form>
   `;
   restaurantDetails.innerHTML = restaurantInfo;
