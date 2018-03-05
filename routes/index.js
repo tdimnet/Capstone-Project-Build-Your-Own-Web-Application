@@ -15,13 +15,19 @@ router.get('/profile', function(req, res, next) {
         if (error) {
           return next(error);
         } else {
-          return res.render(
-            'pages/profile/profile',
-            {
-              title: 'Profile',
-              name: user.name
-            }
-          );
+          Restaurant
+            .find()
+            .limit(5)
+            .then(function(restaurants) {
+              return res.render(
+                'pages/profile/profile',
+                {
+                  title: 'Profile',
+                  name: user.name,
+                  restaurants: restaurants
+                }
+              );
+            })
         }
       })
   }

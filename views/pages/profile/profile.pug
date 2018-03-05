@@ -13,14 +13,11 @@ block content
 
     section
         h3 5 latest restaurants
+        if restaurants.length > 0
             ul
-                li
-                    a.nav-link(href="/") Restaurant 1
-                li
-                    a.nav-link(href="/") Restaurant 2
-                li
-                    a.nav-link(href="/") Restaurant 3
-                li
-                    a.nav-link(href="/") Restaurant 4
-                li
-                    a.nav-link(href="/") Restaurant 5
+                each restaurant in restaurants
+                    li
+                        a.nav-link(href='/profile/restaurant-saved/' + restaurant.restaurantName)= restaurant.nickName
+        else
+            .no-content
+                p No Restaurant saved.
