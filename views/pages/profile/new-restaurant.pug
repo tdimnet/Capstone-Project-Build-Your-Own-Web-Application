@@ -1,14 +1,17 @@
 extends ../../core/layout
 
 block content
-    h1 New Restaurant
-    h2 Start by searching for a new restaurant
+    .jumbotron.jumbotron-fluid.bg-info.text-white
+        .container.text-sm-center.pt-5
+            h1.display-4 New Restaurant
+            p.lead Start by searching for a new restaurant
 
-    hr
-
-    form(id='search-form')
-        input(type='text', placeholder='Search Term', id='search-input')
-        input(type='text', placeholder='Your Location', id='location-input')
-        input(type='submit')
+    form.col-md-8.offset-md-2#search-form
+        .form-group
+            input.form-control(type='text', placeholder='Search Term', id='search-input')
+        .form-group
+            input.form-control(type='text', placeholder='Your Location', id='location-input')
+        .form-group
+            input.btn.btn-primary.btn-lg.btn-block(type='submit')
 
     script(src='/js/searchRestaurants.js')

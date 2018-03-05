@@ -1,18 +1,34 @@
 extends ../../core/layout
 
 block content
-    h1 All restaurants view
-    hr
+    .jumbotron.jumbotron-fluid.bg-info.text-white
+        .container.text-sm-center.pt-5
+            h1.display-4 All restaurants view
+            p.lead Below is all your restaurants saved
 
+
+    .container
+        h5
+            a.btn.btn-outline-secondary(href='/profile') Return to home
     if restaurants.length > 0
-        each restaurant in restaurants
-            .restaurant-item
-                ul
-                    li= restaurant.nickName
-                    li= restaurant.restaurantType
-                    li= restaurant.city
-                    li
-                        a(href='/profile/restaurant-saved/' + restaurant.restaurantName) See Restaurant Details
+        .container.table-responsive
+            table.table.table-striped.table-hover
+                thead
+                    tr
+                        th #
+                        th Nickname
+                        th Restaurant Type
+                        th City
+                        th See details
+                tbody
+                    each restaurant, index in restaurants
+                            tr
+                                td= index
+                                td= restaurant.nickName
+                                td= restaurant.restaurantType
+                                td= restaurant.city
+                                td
+                                    a.btn.btn-outline-primary(href='/profile/restaurant-saved/' + restaurant.restaurantName) See Restaurant Details
 
     else
         .no-content

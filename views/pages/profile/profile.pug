@@ -1,23 +1,25 @@
 extends ../../core/layout
 
 block content
-    h1 Weclome #{name} to your profile
-    h2 Restaurants saved
+    .jumbotron.jumbotron-fluid.bg-info.text-white
+        .container.text-sm-center.pt-5
+            h1.display-4 Weclome #{name} to your profile
+            p.lead Below is all your restaurants saved
 
-    nav
-        ul
-            li
+    .container
+        ul.nav.justify-content-center.pb-4.nav-tabs
+            li.nav-item
                 a.nav-link(href="profile/new-restaurant") Add new restaurant
-            li
+            li.nav-item
                 a.nav-link(href="profile/all-restaurants") See the restaurants saved
 
-    section
-        h3 5 latest restaurants
-        if restaurants.length > 0
-            ul
-                each restaurant in restaurants
-                    li
-                        a.nav-link(href='/profile/restaurant-saved/' + restaurant.restaurantName)= restaurant.nickName
-        else
-            .no-content
-                p No Restaurant saved.
+        section
+            h3 5 latest restaurants
+            if restaurants.length > 0
+                ul
+                    each restaurant in restaurants
+                        li
+                            a.nav-link(href='/profile/restaurant-saved/' + restaurant.restaurantName)= restaurant.nickName
+            else
+                .no-content
+                    p No Restaurant saved.
