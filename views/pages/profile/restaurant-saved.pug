@@ -3,3 +3,13 @@ extends ../../core/layout
 block content
     h1 Saved restaurant info
     hr
+
+    div(id='restaurant-saved')
+
+    hr
+    h3 My Google Maps Demo
+    div(id="map")
+
+
+    script(src='/js/getSavedRestaurantDetails.js')
+    script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3LZlkBJEN0reTK6DyANwdjU9hhi3P8KQ")
