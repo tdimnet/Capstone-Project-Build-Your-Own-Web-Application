@@ -72,16 +72,20 @@ function displayRestaurantInfo(restaurantData) {
 
 
 function displayCategoriesGifs(categoriesGifs) {
-  var categories = '<ul class="container list-group list-group-flush">';
-  for (var i = 0; i < 3; i++) {
-    categories += `
-        <li class="list-group-item">
-            <iframe src="${categoriesGifs[i].embed_url}" frameBorder="0">
-            </iframe>
-        </li>
+  var categories = `
+    <div class="container">
+        <h5>Our Gif Selections</h5>
+        <ul class="list-inline">
     `;
-  }
-  categories += '</ul>';
+    for (var i = 0; i < 3; i++) {
+      categories += `
+          <li class="list-inline-item">
+              <iframe src="${categoriesGifs[i].embed_url}" frameBorder="0">
+              </iframe>
+          </li>
+      `;
+    }
+  categories += '</ul></div>';
   restaurantDetails.insertAdjacentHTML('afterend', categories);
 }
 
