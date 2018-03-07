@@ -24,12 +24,54 @@ function getRestaurantDetails(restaurantId) {
 }
 
 function displayRestaurantInfo(restaurantData) {
-  console.log(restaurantData)
   var restaurantInfo = `
-    <ul>
-        <li>${restaurantData.name}</li>
-    </ul>
-    <hr>
+  <div class="container">
+  <h5 class="text-center">${restaurantData.name}</h5>
+      <div class="table-reponsive">
+          <table class="table table-striped table-hover">
+              <thead>
+              <tr>
+                <th>Element</th>
+                <th>Description</th>
+              </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <th>Restaurant Name</th>
+                      <td>${restaurantData.name}</td>
+                  </tr>
+                  <tr>
+                      <th>Restaurant Category</th>
+                      <td>${restaurantData.categories[0].title}</td>
+                  </tr>
+                  <tr>
+                      <th>Phone</th>
+                      <td>${restaurantData.display_phone}</td>
+                  </tr>
+                  <tr>
+                      <th>Rating</th>
+                      <td>${restaurantData.rating}</td>
+                  </tr>
+                  <tr>
+                      <th>Review Count</th>
+                      <td>${restaurantData.review_count}</td>
+                  </tr>
+                  <tr>
+                      <th>Adresse</th>
+                      <td>${restaurantData.location.address1}</td>
+                  </tr>
+                  <tr>
+                      <th>Zip Code</th>
+                      <td>${restaurantData.location.zip_code}</td>
+                  </tr>
+                  <tr>
+                      <th>City</th>
+                      <td>${restaurantData.location.city}</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+    </div>
   `;
   restaurantDetails.innerHTML = restaurantInfo;
 }
@@ -42,11 +84,20 @@ function getCategoriesGifs(categories) {
 }
 
 function displayCategoriesGifs(categoriesGifs) {
-  var categories = '<ul>';
-  for (var i = 0; i < categoriesGifs.length; i++) {
-    categories += `<li><iframe src="${categoriesGifs[i].embed_url}" width="400" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></li>`;
+  var categories = `
+  <div class="container">
+        <h5>Our related Gif Selections</h5>
+        <ul class="list-inline">
+  `;
+  for (var i = 0; i < 3; i++) {
+    categories += `
+    <li class="list-inline-item">
+        <iframe src="${categoriesGifs[i].embed_url}" frameBorder="0">
+        </iframe>
+    </li>
+    `;
   }
-  categories += '</ul>';
+  categories += '</ul></div>';
   restaurantDetails.insertAdjacentHTML('afterend', categories);
 }
 

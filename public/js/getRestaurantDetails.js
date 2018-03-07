@@ -65,7 +65,6 @@ function displayRestaurantInfo(restaurantData) {
                 value='save restaurant'
             />
         </form>
-        <hr>
         <div class="table-reponsive">
             <table class="table table-striped table-hover">
                 <thead>
