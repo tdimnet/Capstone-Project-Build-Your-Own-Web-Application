@@ -7,19 +7,25 @@ block content
             p.lead This is our profile where you can manage your favorite restaurants
 
     .container
-        ul.nav.justify-content-center.pb-4.nav-tabs
+        ul.nav.justify-content-center.pb-4.nav-tabs.mb-4
             li.nav-item
                 a.nav-link(href="profile/new-restaurant") Add new restaurant
             li.nav-item
                 a.nav-link(href="profile/all-restaurants") See the restaurants saved
 
-        section
-            h3 5 latest restaurants
+        section.mb-4
+            h3 Your five latest restaurants
             if restaurants.length > 0
-                ul
+                .row
                     each restaurant in restaurants
-                        li
-                            a.nav-link(href='/profile/restaurant-saved/' + restaurant.restaurantName)= restaurant.nickName
+                        .col-sm-6.col-md-4.col-lg-3
+                            .card
+                                .card-body
+                                    h5.card-title= restaurant.nickName
+                                    p.card-text With supporting text below as a natural lead-in to additional content.
+                                    a.btn.btn-primary(href='/profile/restaurant-saved/' + restaurant.restaurantName) See Details
             else
-                .no-content
-                    p No Restaurant saved.
+                .col-sm-10.alert.alert-secondary
+                    h4.alert-heading No restaurant saved
+                    hr
+                    p Start by adding new restaurant with the add button. Soon you will be able to save and retrieve your restaurants very easily. I am sure you can do it!!!
