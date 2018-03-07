@@ -1,14 +1,16 @@
 extends ../../core/layout
 
 block content
-    h1 Saved restaurant info
-    hr
+    .jumbotron.jumbotron-fluid.bg-info.text-white
+        .container.text-sm-center.pt-5
+            h1.display-4 Your saved restaurant
+            p.lead An excellent choice of restaurant indeed!
 
     div(id='restaurant-saved')
 
-    hr
-    h3 My Google Maps Demo
-    div(id="map")
+    .container
+        h5 The restaurant location
+        div(id="map")
 
 
     script(src='/js/getSavedRestaurantDetails.js')

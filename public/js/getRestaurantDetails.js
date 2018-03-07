@@ -30,41 +30,86 @@ function getCategoriesGifs(categories) {
 }
 
 function displayRestaurantInfo(restaurantData) {
+  console.log(restaurantData)
   var restaurantInfo = `
     <div class="container">
-        <h5>Restaurant ${restaurantData.name}</h5>
-      <form method="post">
-          <div class="form-group">
-            <label for="nickName">Restaurant NickName</label>
+     <form method="post">
+            <div class="form-group">
+                <label for="nickName">Restaurant NickName</label>
+                <input
+                    class="form-control"
+                    id="nickName"
+                    type="text"
+                    placeholder="e.g. My Favorite Pizza"
+                    name='nickName'
+                />
+            </div>
             <input
-                class="form-control"
-                id="nickName"
-                type="text"
-                placeholder="e.g. My Favorite Pizza"
-                name='nickName'
+                type='hidden'
+                value=${restaurantData.id}
+                name='restaurantName'
             />
-          </div>
-          <input
-              type='hidden'
-              value=${restaurantData.id}
-              name='restaurantName'
-          />
-          <input
-              type='hidden'
-              value=${restaurantData.categories[0].alias}
-              name='restaurantType'
-          />
-          <input
-              type='hidden'
-              value=${restaurantData.location.city}
-              name='city'
-          />
-          <input
-              class="btn btn-primary"
-              type='submit'
-              value='save restaurant'
-          />
-      </form>
+            <input
+                type='hidden'
+                value=${restaurantData.categories[0].alias}
+                name='restaurantType'
+            />
+            <input
+                type='hidden'
+                value=${restaurantData.location.city}
+                name='city'
+            />
+            <input
+                class="btn btn-primary"
+                type='submit'
+                value='save restaurant'
+            />
+        </form>
+        <hr>
+        <div class="table-reponsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                  <th>Element</th>
+                  <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Restaurant Name</th>
+                        <td>${restaurantData.name}</td>
+                    </tr>
+                    <tr>
+                        <th>Restaurant Category</th>
+                        <td>${restaurantData.categories[0].title}</td>
+                    </tr>
+                    <tr>
+                        <th>Phone</th>
+                        <td>${restaurantData.display_phone}</td>
+                    </tr>
+                    <tr>
+                        <th>Rating</th>
+                        <td>${restaurantData.rating}</td>
+                    </tr>
+                    <tr>
+                        <th>Review Count</th>
+                        <td>${restaurantData.review_count}</td>
+                    </tr>
+                    <tr>
+                        <th>Adresse</th>
+                        <td>${restaurantData.location.address1}</td>
+                    </tr>
+                    <tr>
+                        <th>Zip Code</th>
+                        <td>${restaurantData.location.zip_code}</td>
+                    </tr>
+                    <tr>
+                        <th>City</th>
+                        <td>${restaurantData.location.city}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
   `;
   restaurantDetails.innerHTML = restaurantInfo;
@@ -74,7 +119,7 @@ function displayRestaurantInfo(restaurantData) {
 function displayCategoriesGifs(categoriesGifs) {
   var categories = `
     <div class="container">
-        <h5>Our Gif Selections</h5>
+        <h5>Our related Gif Selections</h5>
         <ul class="list-inline">
     `;
     for (var i = 0; i < 3; i++) {
@@ -89,11 +134,6 @@ function displayCategoriesGifs(categoriesGifs) {
   restaurantDetails.insertAdjacentHTML('afterend', categories);
 }
 
-window.onload = function() {
-  var restaurantId = window.location.href.slice(41);
-  getRestaurantDetails(restaurantId);
-}
-
 function initMap(lat, lng) {
   var uluru = {lat: lat, lng: lng};
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -104,4 +144,9 @@ function initMap(lat, lng) {
     position: uluru,
     map: map
   });
+}
+
+window.onload = function() {
+  var restaurantId = window.location.href.slice(41);
+  getRestaurantDetails(restaurantId);
 }
