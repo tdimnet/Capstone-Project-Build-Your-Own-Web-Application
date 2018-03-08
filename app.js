@@ -55,7 +55,7 @@ app.use(function(req, res, next) {
 });
 
 // error handler, fefine as the last app.use callback
-app.use(function(req, res, next) {
+app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('pages/error', {
     message: err.message,

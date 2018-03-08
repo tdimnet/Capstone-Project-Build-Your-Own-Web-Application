@@ -188,8 +188,6 @@ router.post('/register', function(req, res, next) {
         return res.redirect('/profile');
       }
     });
-
-    return res.render('pages/register');
   } else {
     var err = new Error('All fields are required.');
     err.status = 400;
