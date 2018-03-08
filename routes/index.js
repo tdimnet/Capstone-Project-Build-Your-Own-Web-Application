@@ -16,7 +16,9 @@ router.get('/profile', function(req, res, next) {
           return next(error);
         } else {
           Restaurant
-            .find()
+            .find({
+              user: req.session.userId
+            })
             .limit(5)
             .then(function(restaurants) {
               return res.render(
@@ -63,8 +65,9 @@ router.get('/profile/restaurant/:id', function(req, res) {
 
 // POST /profile/restaurant
 router.post('/profile/restaurant/:id', function(req, res, next) {
-  if (req.body.nickName && req.body.restaurantName && req.body.restaurantType && req.body.city) {
+  if (req.session.userId && req.body.nickName && req.body.restaurantName && req.body.restaurantType && req.body.city) {
     var restaurantData = {
+      user: req.session.userId,
       nickName: req.body.nickName,
       restaurantName: req.body.restaurantName,
       restaurantType: req.body.restaurantType,
@@ -105,7 +108,9 @@ router.get('/profile/all-restaurants', function(req, res) {
     return res.redirect('/');
   } else {
     Restaurant
-      .find()
+      .find({
+        user: req.session.userId
+      })
       .then(function(restaurants) {
         return res.render(
           'pages/profile/all-restaurants',

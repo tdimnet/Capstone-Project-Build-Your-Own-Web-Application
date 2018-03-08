@@ -1,6 +1,11 @@
 var mongoose = require('mongoose');
+var User = require('./user');
 
 var RestaurantSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
+  },
   nickName: {
     type: String,
     unique: true,

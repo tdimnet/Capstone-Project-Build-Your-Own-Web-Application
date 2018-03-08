@@ -30,7 +30,6 @@ function getCategoriesGifs(categories) {
 }
 
 function displayRestaurantInfo(restaurantData) {
-  console.log(restaurantData)
   var restaurantInfo = `
     <div class="container">
      <form method="post">
