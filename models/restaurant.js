@@ -12,6 +12,10 @@ var RestaurantSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
+  description: {
+    type: String,
+    required: true
+  },
   restaurantName: {
     type: String,
     required: true,

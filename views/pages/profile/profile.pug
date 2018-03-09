@@ -22,7 +22,7 @@ block content
                             .card
                                 .card-body
                                     h5.card-title= restaurant.nickName
-                                    p.card-text Add description support into db
+                                    p.card-text= restaurant.description
                                     a.btn.btn-outline-primary(href='/profile/restaurant-saved/' + restaurant.restaurantName) See Details
             else
                 .col-sm-10.alert.alert-secondary

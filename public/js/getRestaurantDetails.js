@@ -41,7 +41,17 @@ function displayRestaurantInfo(restaurantData) {
                     type="text"
                     placeholder="e.g. My Favorite Pizza"
                     name='nickName'
+                    required
                 />
+            </div>
+            <div class="form-group">
+                <label for="description">Restaurant Description</label>
+                <textarea
+                    class="form-control"
+                    id="description"
+                    placeholder="e.g. I love this place because the pizza are so damn good!!"
+                    name='description'
+                    rows="3"></textarea>
             </div>
             <input
                 type='hidden'
