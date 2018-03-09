@@ -5,8 +5,10 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var app = express();
 
+var port = process.env.PORT || 3000;
+
 // Mongodb connection
-mongoose.connect('mongodb://localhost:27017/capstone');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/capstone');
 var db = mongoose.connection;
 // Mongo error
 db.on(
@@ -63,6 +65,6 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.listen(3000, function() {
+app.listen(port, function() {
   console.log('Express app is running on port 3000');
 });
