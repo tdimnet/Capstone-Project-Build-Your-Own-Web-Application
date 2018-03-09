@@ -1,4 +1,9 @@
 extends ../core/layout
 
 block content
-    h2= message
+    .container.pt-4
+        .alert.alert-danger(role='alert')
+            h4.alert-heading Something went wrong..
+            p= message
+            hr
+            a.btn.btn-light.justify-content-center(href='/') Return to home
